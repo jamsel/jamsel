@@ -1,0 +1,42 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selector", "Selector.csproj", "{D9307E4C-86DE-4A45-A5EC-18451FCE0D51}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{6BF7440F-90EB-4002-AC7C-6F8D2957CA4A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccLocalPath0 = .
+		CanCheckoutShared = false
+		SolutionUniqueID = {3D74A473-2C24-4299-8448-E3751E108EEA}
+		SccProjectUniqueName1 = Selector.csproj
+		SccLocalPath1 = .
+		CanCheckoutShared = false
+		SccProjectUniqueName2 = Test\\Test.csproj
+		SccLocalPath2 = .
+		CanCheckoutShared = false
+		SccProjectFilePathRelativizedFromConnection2 = Test\\
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{D9307E4C-86DE-4A45-A5EC-18451FCE0D51}.Debug.ActiveCfg = Debug|.NET
+		{D9307E4C-86DE-4A45-A5EC-18451FCE0D51}.Debug.Build.0 = Debug|.NET
+		{D9307E4C-86DE-4A45-A5EC-18451FCE0D51}.Release.ActiveCfg = Release|.NET
+		{D9307E4C-86DE-4A45-A5EC-18451FCE0D51}.Release.Build.0 = Release|.NET
+		{6BF7440F-90EB-4002-AC7C-6F8D2957CA4A}.Debug.ActiveCfg = Debug|.NET
+		{6BF7440F-90EB-4002-AC7C-6F8D2957CA4A}.Debug.Build.0 = Debug|.NET
+		{6BF7440F-90EB-4002-AC7C-6F8D2957CA4A}.Release.ActiveCfg = Release|.NET
+		{6BF7440F-90EB-4002-AC7C-6F8D2957CA4A}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
