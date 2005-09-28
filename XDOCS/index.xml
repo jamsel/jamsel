@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<document>
+
+  <properties>
+    <title>Maven</title>
+    <author email="jawaid.hakim@codestreet.com">Jawaid Hakim</author>
+  </properties>
+
+  <body>
+
+  <section name="JAMSEL (Java API for Message Selection)">
+          <p>
+	  The JAMSEL framework provides a complete implementation of the JMS selector facility as defined by the JMS specification 1.1. The
+	  framework is transport-neutral and can be used by any application that requires support for a flexible conditional expression 
+	  syntax. The data source is abstracted behind the <code>IValueProvider</code> interface - any class that implements this interface 
+        may be used to drive the selector.
+	  </p>
+        <p>
+	  The framework provides direct support, in the form of classes that implement the <code>IValueProvider</code> interface,
+        for a number of data types. Currently, the framework provides out of the box support for <a href="www.tibco.com" target="_blank">TIBCO/RV</a>, 
+        JMS, and <code>Map</code>.
+	  </p>
+    	  <p>
+        For more information on getting started with the framework see the 
+	  <a href="./start/index.html">Getting Started</a> guide.
+    	  </p>
+  </section>
+
+  <section name="The Big Picture">
+    <p>
+      The intent of JAMSEL is to provide a complete and highy efficient implementation of a selector framework.
+   </p>
+  </section>
+
+</body>
+</document>

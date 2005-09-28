@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <title>Download JAMSEL</title>
+    <author email="jawaid.hakim@codestreet.com">Jawaid Hakim</author>
+  </properties>
+
+  <body>
+    <section name="Download JAMSEL">
+
+      <p>
+      JAMSEL is currently distributed in two formats for user convenience:
+      a tar/gzipped install archive and a zipped install archive. Each of the 
+	install archives contains everything that Selector needs to run except
+	for the JARs from TIBCO. If you are using features of JAMSEL that
+	require the use of <a href="http://www.tibco.com">TIBCO/Rendezvous</a>
+	then you will have to make sure that these JARs are in your CLASSPATH.
+      </p>
+	<p>
+	You can find the install archives <a href="http://sourceforge.net/projects/jamsel">here</a>.
+	</p>
+    </section>
+  </body>
+</document>
+

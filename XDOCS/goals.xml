@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="jawaid.hakim@codestreet.com">Jawaid Hakim</author>
+    <title>JAMSEL's Goals</title>
+  </properties>
+
+  <body>
+    <section name="JAMSEL's Goals">
+      <p>
+        The JAMSEL framework was conceived and created during the development of trading systems for top-tier banks on Wall Street. These 
+	  trading systems tyically made heavy use of JMS and <a href="http://www.tibco.com">TIBCO/Rendezvous</a>.
+	</p>
+	<p>
+        As the benefits of using JMS selectors became clear, the realization occured that the ability to filter messages on the 
+	  client-side could be beneficial as well. For example, it might be necessary in some applications to oversubscribe on 
+	  topics/queues and then filter out unnecessary messages at the client. Clearly, for client-side filtering it would be desirable to allow 
+	  exactly the same selector syntax as used for the server-side filtering.
+	</p>
+	<p>
+	  A selection/filtering framework that was independent of the transport layer would be of great value. For example, it would
+	  be beneficial to have a selector framework that would work seamlessly with JMS, TIBCO/RV, IBM/MQ, Sockets, etc. Taking this
+	  one step further, the ability to select and filter data in general - no matter what the source of that data was - using a 
+	  standard selection syntax would be of value. This realization, coupled with the desire to implement the fastest possible
+	  selector, was the driving force behind this framework.  
+	</p>
+	<p>
+
+        <ul>
+          <li>Provide a complete implementation of selectors as specified by the JMS Specification 1.1</li>
+          <li>Provide a transport neutral selector implementation</li>
+          <li>Out of the box support for JMS</li>
+          <li>Out of the box support for TIBCO/Rendezvous</li>
+          <li>Out of the box support for .NET and C#</li>
+          <li>High performance</li>
+        </ul>
+      </p>
+
+      <subsection name="Provide a complete implementation of selectors as specified by the JMS Specification 1.1">
+        <p>
+		The framework is a complete implementation of the JMS selector sub-system.
+        </p>
+      </subsection>
+
+      <subsection name="Provide a transport neutral selector implementation">
+        <p>
+		The framework is completely transport neutral. Any transport/protocol such as JMS, TIBCO/Rendezvous, IBM/MQ may
+		may be used by the application. In fact, any class that implements the <code>IValueProvider</code> interface can
+		be used as the data source.
+        </p>
+      </subsection>
+
+      <subsection name="Native support for JMS">
+        <p>
+		The framework provides utility classes that allow JMS messages to be filtered.
+        </p>
+      </subsection>
+
+      <subsection name="Native support for TIBCO/Rendezvous">
+        <p>
+		The framework provides utility classes that allow TIBCO/Rendezvous messages to be filtered.
+        </p>
+      </subsection>
+
+      <subsection name="High performance">
+        <p>
+		The framework uses a <a href="http://www.webgain.com/products/java_cc/">JAVACC</a> generated parser to parse the 
+		specified selector. During the parse, an in-memory representation of the selector is built. At run-time, this
+		in-memory selector is evaluated without unnecessary overhead. In addition, all selector operations are highly 
+		optimized for performance and object creation. In informal benchmarks comparing leading JMS provider implementations, 
+		the JAMSEL framework was roughly <tt>4</tt> times faster than its nearest competitor.
+        </p>
+      </subsection>
+
+    </section>
+  </body>
+</document>

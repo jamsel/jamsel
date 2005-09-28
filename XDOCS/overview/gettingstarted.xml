@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<document>
+  <properties>
+    <title>Getting Started</title>
+    <author email="jawaid.hakim@codestreet.com">Jawaid Hakim</author>
+  </properties>
+
+  <body>
+    <section name="Using JAMSEL">
+<table cellpadding="5">
+     <caption align="top">
+     Development Steps
+     </caption>
+     <tr>
+     <th>1</th>
+     <td>Create an instance of <tt>CSSelector</tt> by using one of its <tt>static</tt> factory methods.</td>
+     </tr>
+     <tr>
+        <th>2</th>
+        <td>Get the list of identifiers encountered during the parse by calling <tt>getIdentifiers()</tt> on the
+             <tt>CSSelector</tt> instance.</td>
+      </tr>
+      <tr>
+        <th>3</th>
+        <td>For each <tt>Message</tt> that you want to evaluate with the selector create a <tt>Map</tt> and populate it
+         with the identifier names and values. Or, create an instance of <tt>ICSValueProvider</tt>.</td>
+     </tr>
+      <tr>
+        <th>4</th>
+        <td>Call <tt>eval()</tt> on the <tt>CSSelector</tt> instance to evaluate the selector. You can invoke either the 
+	      <tt>Map</tt> or the <tt>ICSValueProvider</tt> version of the <tt>eval()</tt> method. Note, if you use the
+		<tt>ICSValueProvider</tt> version of <tt>eval()</tt> then callbacks on the <tt>ICSValueProvider</tt> instance 
+		will be invoked to get values of identifiers during evaluation.</td>
+     </tr>
+</table>
+    </section>
+  </body>
+</document>

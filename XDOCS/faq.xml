@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+
+<document>
+
+  <properties>
+    <title>JAMSEL FAQ</title>
+    <author email="jawaid.hakim@codestreet.com">Jawaid Hakim</author>
+  </properties>
+
+  <body>
+
+  <section name="Frequently Asked Questions">
+    <p>
+      This document attempts to answer some of the more frequently asked
+      questions regarding various aspects of JAMSEL.  These questions are
+      typically asked over and over again on the mailing lists, as a
+      courtesy to the developers, we ask that you read this document
+      before posting to the mailing lists.  
+    </p>
+    <p><strong>General</strong></p>
+    <ol>
+      <li>
+        <a href="#what-is-JAMSEL">
+          What is JAMSEL?
+        </a>
+      </li>
+    </ol>
+    <section name="General">
+      <dl>
+        <dt>
+          <a name="what-is-JAMSEL">
+            What is JAMSEL?
+          </a>
+        </dt>
+        <dd>
+          Please see the <a href="goals.html">Goals</a> and <a
+          href="/overview/features.html">Features</a> documents.
+        </dd>
+      </dl>
+    </section>
+    <section name="Using JAMSEL">
+      <dl>
+        <dt>
+          <a name="tibco-JAMSEL">
+            Using the <tt>CSRvValueProvider</tt> class throws a <tt>ClassNotFound: com.tibco.tibrv.TibrvMsg</tt> exception ?
+          </a>
+        </dt>
+        <dd>
+	  JAMSEL provides value extractors to extract values from <a href="http://www.tibco.com">TIBCO/RV</a>.
+	  Since RV is a commercial product you must puchase it separately. Once you have purchased the product or
+	  downloaded an evaluation copy, make sure it is in your <tt>CLASSPATH</tt>. This should fix the problem.
+        </dd>
+        <dt>
+          <a name="identifier-values-options">
+            How can the application pass identifier values to the framework during selector evaluation ?
+          </a>
+        </dt>
+        <dd>
+		The framework parses the <tt>String</tt> selector expression and generates a in-memory representation of the expression. This
+	      in-memory representation is returned as an instance of <tt>ICSSelector</tt>. When a <tt>ICSSelector</tt> instance has to be 
+	      evaluated, the application has a couple of options. In the first option, the application can retrieve all the identifiers that 
+	      were found during the parse by invoking <tt>getIdentifiers()</tt> on the <tt>ICSSelector</tt> instance. Once the application 
+		has the names of all identifiers, it can create a <tt>Map</tt> with the the values of the identifiers - the key into the 
+		<tt>Map</tt> is the identifier name. After constructing and populating the <tt>Map</tt> the applciation can call 
+		<tt>eval(map)</tt>. In the second option, the application creates an instance of a <tt>callback</tt> class that implements 
+	      <tt>ICSValueProvider</tt> and then invoked <tt>eval(vp, corr)</tt>. During evaluation of the selector instance, the framework 
+		calls the <tt>ICSValueProvider</tt> instance to get the value of the desired identifier.
+        </dd>
+        <dt>
+          <a name="identifier-values-preferred">
+            Which evaluation stretegy should the application use ?
+          </a>
+        </dt>
+        <dd>
+		If the selector expression has a large number of identifiers and sub-expressions then the <tt>callback</tt> option may yield 
+		better performance under certain conditions. For example, if sub-expressions are highly discriminating then using a callback 
+		is better since identifier values are requested <tt>as needed</tt>. That is, if an identifer value is not required during 
+		evaluation then it is not requested by the framework. In contrast, the <tt>Map</tt> options forces the application to provide 
+		values for all identifiers regardless of whether the values are actually used during evaluation. Another benefit of using the 
+		callback strategy is that the value provider implementations <tt>CSRvValueProvider</tt> and <tt>CSJmsValueProvider</tt> can be 
+		used to extract values from TIBCO/RV and JMS messages without any additional coding.
+        </dd>
+        <dt>
+          <a name="content-filtering-jms">
+            I have a <tt>MapMessage</tt> that contains application fields. These application fields are not properties of the message. How 
+		can I filter messages based on content ?
+          </a>
+        </dt>
+        <dd>
+		The JMS 1.1 selector specification allows selectors to filter messages based on either header fields or properties. However,
+		applications frequently require message selection based on content. The framework provides an extension of the JMS specification
+		to provide content-based selection. Specifically, the framework allows '.' in the identifier name. The notation '.' can be used to
+		reference <tt>MapMessage</tt> content fields and even to reference fields within nested messages. For example, the identifier
+		'.Quantity' will be interpreted by an instance of the <tt>CSJmsValueProvider</tt> class as a top-level content field named 
+		'Quantity'. The identifier '.Nested.Quantity' will be interpreted by an instance of <tt>CSJmsValueProvider</tt> as a content
+		field named 'Quantity' within a nested <tt>MapMessage</tt> content field named 'Nested'.
+        </dd>
+        <dt>
+          <a name="content-filtering-rv">
+            I have a <tt>TibrvMsg</tt> that contains application fields. How can I filter messages based on content ?
+          </a>
+        </dt>
+        <dd>
+		The '.' notation can be used to reference <tt>TibrvMsg</tt> fields and even to reference fields within nested messages. For 
+		example, the identifier '.Quantity' will be interpreted by an instance of the <tt>CSRvValueProvider</tt> class as a top-level 
+		field named 'Quantity'. The identifier '.Nested.Quantity' will be interpreted by an instance of <tt>CSRvValueProvider</tt> 
+		as a field named 'Quantity' within a nested <tt>TibrvMsg</tt> field named 'Nested'. In fact, since there is no distinction
+		in <tt>TibrvMsg</tt> between header fields, properties, and content fields, applications can skip the leading '.' in the
+		selector. Specificaly, the identifiers '.Quantity' and 'Quantity' are treated identically. 
+        </dd>
+        <dt>
+          <a name="content-filtering-rv-naming">
+            I have a <tt>TibrvMsg</tt> that contains top-level application fields. Why do I have to preface the identifier names with a
+		'.' ?
+          </a>
+        </dt>
+        <dd>
+		The '.' notation is used to reference content fields. In JMS, the '.' notation is used to specify content fields - any identifier
+		without a '.' can refer only to header fields or message properties. In the <tt>TibrvMsg</tt> world there is no distinction
+		between header fields, properties, or content fields. However, to maintain syntactic compatibility between JMS and <tt>TibrvMsg</tt>,
+		the framework allows applications to preface <tt>TibrvMsg</tt> identifiers with a '.'. As a result, the same selector can be used
+		by JMS and <tt>TibrvMsg</tt> implementations. However, the '.' prefix is optional for <tt>TibrvMsg</tt> implementations. In other
+		words, in <tt>TibrvMsg</tt> implementations, the identifiers 'Quantity' and '.Quantity' are identical. 
+	  </dd>
+        <dt>
+          <a name="content-filtering-rv-naming">
+            I have a <tt>TibrvMsg</tt> that contains a top-level application field named '.Quantity'. When I used the <tt>CSRvValueProvider</tt>
+		class, the selector <tt>.Quantity IS NOT NULL</tt> evaluates to <tt>false</tt> even though the application clearly sets the 
+		field. Why ?
+          </a>
+        </dt>
+        <dd>
+		The <tt>CSRvValueProvider</tt> class treats the '.' as a meta-character. Specifically, it skips over the leading '.'. If your
+		application has '.' as a valid character within field names then you must code your own <tt>ICSValueProvider</tt> that does
+		the right thing.
+	  </dd>
+        <dt>
+          <a name="performance-JAMSEL">
+	  	How efficient is the JAMSEL framework ? 
+          </a>
+        </dt>
+        <dd>
+		The JAMSEL framework is highly efficient both in terms of object creation and evaluation. For example, the selector expression
+		<tt>JMSPriority >= 0 AND Quantity > 100 AND MessageName in ('foo', 'goo', 'too', 'CreateOrder', 'last', '1', '2', '3', '4', '5', 'a', 'b', 'c', 'd')</tt> 
+		can be evaluated using the <tt>CSRvValueProvider</tt> at a rate of <tt>225,000</tt> evaluations per second on a low-end machine
+		running Windows 2000. Contrast this with the selector implementation found in <a href="http://sourceforge.net/projects/jboss/">JBOSS</a>. 
+		The JBOSS implementation will evaluate the same selector expression at a rate of about <tt>90,000</tt> evaluation per second.		
+        </dd>
+      </dl>
+    </section>
+  </section>
+</body>
+</document>

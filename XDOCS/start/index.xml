@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <title>Getting Started with JAMSEL</title>
+    <author email="jawaid.hakim@codestreet.com">Jawaid Hakim</author>
+  </properties>
+
+  <body>
+    <section name="Getting Started with JAMSEL">
+      <p>
+        This document (as well as the others in this section) provide
+        an introduction to JAMSEL and how to use it within a project.
+        For those that have already skimmed the documentation on this
+        site, you may be asking yourself, what *exactly* does it mean to
+        use JAMSEL?  These documents attempt to illustrate how one might 
+        install, integrate and leverage the power of JAMSEL in a project.
+      </p>
+
+      <p>
+        To avoid overwhelming you (user, developer, or contributor) with
+        unnecessary information, this document attempts to provide
+        references to various documents depending upon your  
+        interests.  It is meant to provide you with a starting point
+        that can be effectively used to get to the information you need
+        without going through all of the documentation on the site,
+        which might be a little overwhelming.
+      </p>
+
+      <subsection name="Overview of the Getting Started Documentation">
+        <table>
+          <tr><th>Document</th><th>Description</th></tr>
+          <tr><td><a href="download.html">Download</a></td>
+            <td>
+              Before you can start using JAMSEL in any form, you'll have
+              to download the JAMSEL distribution to your system (unless
+              you plan on building JAMSEL from source).  This document
+              provides links to the various distributions available.
+            </td>
+          </tr>
+          <tr><td><a href="install.html">Install</a></td>
+            <td>
+              After you have downloaded a distribution, you'll need to
+              install it on your system before you can start using
+              JAMSEL (unless you plan on building JAMSEL from source).
+              This document provides step-by-step instructions on the installation process.
+            </td>
+          </tr>
+          <tr><td><a href="use.html">Use</a></td>
+            <td>
+              For those of you that have been referred to this document
+              because you are trying to build a JAMSEL-enabled project, this 
+		  document will provide you with all of the necessary information required
+              to build any JAMSEL-enabled project.
+            </td>
+          </tr>
+        </table>
+      </subsection>
+    </section>
+ </body>
+</document>

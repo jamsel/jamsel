@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <title>Using JAMSEL</title>
+    <author email="jawaid.hakim@codestreet.com">Jawaid Hakim</author>
+  </properties>
+
+  <body>
+   <section name="Using JAMSEL">
+     <p>
+       Congratulations!  Now that you have installed JAMSEL and/or
+       integrated with your project, you are now ready to start
+       reaping the benefits of JAMSEL.  The rest of this document will be
+       a guided tour through the basic operation of Selector's build system.
+     </p>
+     <p>
+       First, make sure that your CLASSPATH is set up correctly. JAMSEL requires
+	 that the <a href="http://jakarta.apache.org/oro">JAKARTA ORO</a> jar be in 
+	 your CLASSPATH. In addition, if you use the <a href="http://www.tibco.com">
+	 TIBCO/Rendezvous</a> helper classes from the library, then the appropriate
+	 TIBCO jars should be in the CLASSPATH. Finally, if you use the JMS helper 
+	 classes from the library, then the appropriate JMS jars should be in the 
+	 CLASSPATH as well. 
+     </p>
+     <p>
+       Next, take a look at the sample below that shows how to integrate JAMSEL with
+	 an application. A selector is created as follows:
+     </p>
+      <source>
+		<![CDATA[
+			String s = "...";
+			ISelector selector = Selector.getInstance(s);
+      ]]>
+	</source>	  
+	<p>
+	 Once a selector instance has been created it may be evaluated multiple times. The
+	 framework provides two options for evaluating selectors. Under the first option, the
+	 application queries the selector instance for all identifiers that were encountered 
+	 during the parse. The application then creates a <tt>Map</tt>, and populates it with
+	 the values of the identifiers. Once the values of the identifiers have been set, 
+	 the selector can be evaluated. The code shown below implements these steps. Note, the 
+	 method <tt>getValue()</tt> is application code that fetches the value of the specified identifier:
+	</p>
+      <source>
+		<![CDATA[
+			// Create the identifier value Map and fill with values
+			Map identVals = new HashMap();
+			for (Iterator iter = selector.getIdentifiers().keySet().iterator(); iter.hasNext(); )
+			{
+				String key = (String)iter.next();
+				identVals.put(key, getValue(key));
+			}
+
+			// Evaluate the selector
+			boolean result = selector.eval(identVals);
+      ]]>
+	</source>	  
+	<p>
+	 The second option for evaluating a selector is to use the framework's <i>value provider</i> strategy. 
+	 The idea here is that instead of creating a <tt>Map</tt> of identifier values, the application 
+	 registers a <i>callback</i> with the selector. The selector invokes the callback when and if it 
+	 needs the value of an identifier. The framework provides build-in value provider implementations
+	 for JMS and TIBCO/Rendezvous. In addition, the application can implementation its own value
+	 providers by simply implementing the <tt>IValueProvider</tt> interface. 
+	</p>
+	<p>
+	 The code shown below implements these steps for JMS. Note, the <tt>eval()</tt> method takes 
+	 a correlation <tt>Object</tt> parameter. The correlation parameter is passed as-is to the 
+	 value provider implementation:
+	</p>
+      <source>
+		<![CDATA[
+			// Get the JMS message and create value provider
+			Message jmsMsg = ...;
+			IValueProvider vp = com.codestreet.selector.jms.ValueProvider.valueOf(jmsMsg);
+
+			// Get any application correlation data
+			Object corr = ...;
+
+			// Evaluate selector
+			Result result = selector.eval(cp, corr);
+      ]]>
+	</source>	  
+     <p>
+	 Of the two options shown above, the value provider approach can result in better performance. For
+	 example, suppose the selector expression contains many sub-expressions and a total of <tt>10</tt> 
+	 identifiers. The <tt>Map</tt> approach will require the application to set the value of all <tt>10</tt> 
+	 identifiers on each evaluation. In contrast, in case some evaluations result is short-circuting of the 
+	 selector expression, the value provider approach will not examine all <tt>10</tt> identifiers. Use the 
+	 approach that best fits your specific needs.
+     </p>
+     <p>
+	 A note on thread safety. The selector implementation is immutable. In other words, a selector instance
+	 can be used concurrently by multiple threads without any internal or external synchronization.
+     </p>
+     <p>
+       That concludes the tour of JAMSEL. For more details please see the whitepapers.
+     </p>
+   </section>
+ </body>
+</document>

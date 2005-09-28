@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="jawaid.hakim@codestreet.com">Jawaid Hakim</author>
+    <title>Features</title>
+  </properties>
+
+  <body>
+    <section name="Features">
+	<subsection name="JMS Specification 1.1">
+      <p>
+        Full implementation of the JMS selector specification 1.1.
+	</p>
+	</subsection>
+	<subsection name="Transport Neutral Implementation">
+      <p>
+	  The framework is transport neutral - it can work with any messaging protocol. In fact, the framework can
+	  and should be used in any context where there is a need to evaluate conditional expressions based on a
+	  subset of the SQL92 conditional expression syntax. For example, the framework could be used to select data 
+	  from a datastore that does not natively support complex selection. Or, the framework could be used to select 
+	  data items from a application cache at run-time.
+	</p>
+	</subsection>
+	<subsection name="Support for Common Messaging Protocols">
+      <p>
+	  The framework provides built-in support for JMS and <a href="http://www.tibco.com">TIBCO/Rendezvous</a>.
+	  This support is provided in the form of value provider classes that are able extract identifier values
+	  for JMS and TIBCO/Rendezvous messages. Applications are free to write their own value provider classes
+	  for other protocols and/or for application-specific requirements.
+	</p>
+	</subsection>
+	<subsection name="Performance">
+      <p>
+	  The framework provides extremely high performance and minimal object creation. In performance tests against 
+	  the leading JMS implementations this framework was at least <tt>4</tt> times faster than the closest contender.
+	</p>
+	</subsection>
+	<subsection name="Extension">
+      <p>
+        Applications frequently require message filtering based on the content of the message instead of just the message
+	  header and properties. In such cases, applications have to be modified to publish message content fields as
+	  properties for the sole purpose of filtering. To address this requirement, the framework allows selection based on 
+	  message content including nested messages (when supportd by the specific protocol and implementation). For example, 
+	  <a href="http://www.tibco.com">TIBCO/Rendezvous</a> and <a href="http://www.tibco.com">TIBCO/JMS</a> both support 
+	  nested message fields.
+	</p>
+	</subsection>
+	<!--
+	<subsection name="Miscellaneous">
+      <p>
+	  For more details see the <a href="../msoft/selector.pdf">whitepaper</a>.
+	</p>
+	</subsection>
+	-->
+    </section>
+  </body>
+</document>

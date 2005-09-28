@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<document>
+
+  <properties>
+    <author email="jawaid.hakim@codestreet.com">Jawaid Hakim</author>
+    <title>JAMSEL</title>
+  </properties>
+
+  <meta name="keyword" content="jms, java, messaging, tibco, rendevzous, distributed computing"/>
+
+<body>
+
+    <section name="JAMSEL Framework"> 
+     <p>A framework for evaluating a subset of <tt>SQL92</tt> conditional expression syntax. Specifically, the framework is a 	
+	  complete implementation of the JMS 1.1 selector specification
+     </p>
+     <ol>
+		<li>Complete implementation of JMS 1.1 selector specification.</li>
+		<li>Transport neutral implementation.</li>
+		<li>Support for JMS and TIBCO/Rendezvous.</li>
+		<li>High performance.</li>
+     </ol> 
+     <p>Please read the whitepaper for a detailed description of the framework.</p>
+    </section>
+
+</body>
+</document>

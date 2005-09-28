@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<document>
+  <properties>
+    <title>Install</title>
+    <author email="jawaid.hakim@codestreet.com">Jawaid Hakim</author>
+  </properties>
+
+  <body>
+    <section name="Install"> 
+      <ul>
+        <li>Download the JAMSEL distribution to a local drive.</li>
+	  <li>Extract the JAMSEL distribution to a local drive.</li>
+        <li>Make sure that the JAKARTA ORO jar is in your CLASSPATH.</li>
+        <li>Start using the JAMSEL framework.</li>
+	</ul>
+    </section>
+  </body>
+</document>

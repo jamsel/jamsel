@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="JAMSEL"
+         href="http://messageforge.sourceforge.net">
+  <title>JAMSEL</title>
+  <body>
+    <!-- Links end up in the bar under the header of each web page -->
+    <links>
+      <item name="Sourceforge Project Home"  
+            href="http://sourceforge.net/projects/jamsel"/>
+    </links>
+    <!-- menu items are above the standard Maven generated project info links -->
+    <menu name="Overview">
+      <item name="Goals" href="/goals.html"/>
+      <item name="Features" href="/overview/features.html"/>
+      <item name="Getting Started" href="/start/index.html"/>
+      <item name="FAQ" href="/faq.html"/>
+      <item name="Whitepaper" href="/msoft/selector.htm"/>
+      <item name="Whitepaper Word Document" href="/msoft/selector.doc"/>
+      <item name="Whitepaper PDF Document" href="/msoft/selector.pdf"/>
+    </menu>
+  </body>
+</project>
+
