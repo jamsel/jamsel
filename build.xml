@@ -1,0 +1,412 @@
+<!--
+ * Copyright 2003, 2004, 2005. CodeStreet LLC.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at 
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<!-- ================= Build for csselector using Ant 1.4 ================= -->
+<!--DOCTYPE project PUBLIC "-//ANT//DTD project//EN" "project.dtd" -->
+<project name="csselector" default="targets" basedir=".">  
+  
+  <!-- ================================================================== -->
+  <!--                            Properties                              -->
+  <!-- ================================================================== -->
+  
+  <!-- ==== Raven related - begin ==== -->
+
+  <!-- Allow any user specific values to override the defaults -->
+  <property file="${user.home}/build.properties" />
+  <!-- Allow user defaults for this project -->
+  <property file="build.properties" />
+  <!-- Set default values for the build -->
+  <property file="project.properties" />  
+
+  <!-- ==== Raven related - end ==== -->
+
+  <property environment="env"/>
+  <property name="cs.lib.repo" value="${env.CS_LIBREPO_HOME}"/>
+  <property name="javacchome" value="${env.JAVACC_HOME}"/>
+
+  <property name="source" value="./src"/>
+  <property name="main" value="${source}/java"/>
+  <property name="test" value="${source}/test"/>  
+  <property name="examples" value="${source}/examples"/>  
+  <property name="build" value="build"/>
+  <property name="classes" value="${build}/classes"/>
+
+  <property name="deprecation" value="false"/>
+  <property name="dist" value="dist"/>
+  <property name="lib" value="lib"/>
+  <property name="doc" value="doc"/>
+  <property name="config" value="config"/>
+  <property name="archive" value="${name}-${version}"/>
+  <property name="archive-test" value="${name}-test-${version}"/>
+  <property name="archive-latest" value="${name}-latest"/>
+  <property name="archive-test-latest" value="${name}-test-latest"/>
+  <property name="excludes" value="**/package.html"/>
+  <property name="testexcludes" value="**/package.html"/>
+  <property name="apipackagenames" value="com.codestreet.selector" />
+  <property name="allpackagenames" value="com.codestreet.*"/>     
+  <property name="selectorgrammar.dir" value="./src/java/com/codestreet/selector/parser"/>
+
+ 
+  <path id="csselector-classpath">
+     <!-- include all jar files in the local lib directory -->
+     <!-- When using the jar repository, this will often be empty -->
+     <!-- include dependent jar files from the jar repository -->
+     <fileset dir="${cs.lib.repo}">
+       <include name="jakarta-oro-${jakartaoro-version}.jar"/>
+     </fileset>
+     <fileset dir="${cs.lib.repo}">
+       <include name="jms-${jms-version}.jar"/>
+     </fileset>
+     <fileset dir="${cs.lib.repo}">
+       <include name="tibrv-${tibrv-version}.jar"/>
+     </fileset>
+  </path>
+
+  <path id="csselector-test-classpath">
+    <path refid="csselector-classpath"/>
+    <pathelement path="${classes}"/>
+  </path>
+
+ 
+  <!-- Display all the targets -->
+  <target name="targets">
+    <echo message=""/>
+    <echo message="ANT build for ${name} ${version}"/>
+    <echo message=""/>
+    <echo message="The following targets are available:"/>
+    <echo message="  targets  Lists the build targets"/>
+    <echo message="  clean    Cleans the build and distribution directories"/>
+    <echo message="  all      Cleans and builds all the packages and examples"/>
+    <echo message="  release  Cleans and builds all the release packages"/>
+    <echo message="           (JAR, source, doc, tarball) in the dist directory"/>
+    <echo message="  main     Builds the main packages (including debugging info)"/>
+    <echo message="  prepare-jmsselector-src Builds the JMS selector parser packages"/>
+    <echo message="  examples Builds the example packages (including debugging info)"/>
+    <echo message="  test    Builds the test packages (including debugging info)"/>    
+    <echo message="  jar      Builds the version labeled JAR in the dist directory"/>
+    <echo message="  jar-latest Builds the 'latest' labeled JAR in the dist directory with a label of 'latest'"/>
+
+    <echo message="  install-jar  Installs the verion labeled  JAR in the cs.lib.repo directory.  If the jar has not been created it is first built."/>
+    <echo message="  install-jar-latest  Installed the 'latest' labeled JAR in the cs.lib.repo.  If the jar has not been created it is first build."/>
+    <echo message="  doc      Builds the documentation"/>
+    <echo message="  api      Builds the API JavaDocs"/>
+    <echo message="  javadoc  Builds the full JavaDocs"/>
+    <echo message="  source   Builds the source tarball in the dist directory"/>
+    <echo message="  tarball  Builds the binary distribution in the dist directory"/>
+        
+  </target>
+  
+
+  <!-- Prepare target directories -->
+  <target name="prepare" >
+    <mkdir dir="${build}"/>
+    <mkdir dir="${classes}"/>
+    <mkdir dir="${dist}"/>
+    <antcall target="echo-jars"/>
+    <antcall target="prepare-config-src"/>
+    <antcall target="prepare-jmsselector-src"/>
+  </target>
+  
+  <target name="echo-jars">
+    <echo message="Environment Variable/Property CS_LIBREPO_HOME = ${cs.lib.repo}"/>
+    <echo message="Using Jakarta ORO ${jakartaoro-version}"/>
+    <echo message="Using TIBRV ${tibrv-version}"/>
+    <echo message="Using JMS ${jms-version}"/>
+  </target>
+  
+  <!-- Obtain dependent jar files for the build if not already in local -->
+  <!-- repository                                                       -->
+  <target name="update-jars">
+    <echo message="Using JakartaORO ${jakartaoro-version}"/>
+    <get src="${cs.repo.remote}/jakarta-oro-${jakartaoro-version}.jar"
+         dest="${cs.lib.repo}/jakarta-oro-${jakartaoro-version}.jar"
+         verbose="true"
+         usetimestamp="true"/>
+    <echo message="Using TIBRV ${tibrv-version}"/>
+    <get src="${cs.repo.remote}/tibrvj-${tibrv-version}.jar"
+         dest="${cs.lib.repo}/tibrvj-${tibrv-version}.jar"
+         verbose="true"
+         usetimestamp="true"/>
+    <echo message="Using JMS ${jms-version}"/>
+    <get src="${cs.repo.remote}/jms-${jms-version}.jar"
+         dest="${cs.lib.repo}/jms-${jms-version}.jar"
+         verbose="true"
+         usetimestamp="true"/>
+  </target>
+
+
+  <!-- Kill all the directories created in prepare -->
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+
+
+	<target name="print-classpath">
+	  <pathconvert property="formatted-path"
+             pathsep=";"
+             refid="csselector-classpath" />
+	  <echo message="path = ${formatted-path}" />
+	  
+	</target>
+
+	<!-- ====================================== -->
+	<!-- Prepare the configuration classes by   -->
+	<!-- running the SourceGenerator class in   -->
+	<!-- distribution.                          -->
+	<!-- ====================================== -->
+	<target name="prepare-config-src">
+	</target>
+
+
+  <!-- Build all the sources with debug and deprecation -->
+  <target name="main" depends="prepare">
+    <javac srcdir="${main}" 
+	   destdir="${classes}" 
+	   excludes="${excludes}"
+	   classpathref="csselector-classpath" 
+	   debug="on" 
+	   deprecation="off" />
+  </target>
+  
+  <!-- Same as main, but optimization, no debug and no deprecation -->
+  <target name="main-opt" depends="prepare">
+    <javac srcdir="${source}" 
+	   destdir="${classes}" 
+	   excludes="${excludes}" 
+	   classpathref="csselector-classpath" 
+	   debug="off" 
+	   deprecation="off" 
+	   optimize="on" />
+  </target>
+  
+
+	<!-- ============================================== -->
+	<!-- Generate JMS selector parser by running JAVACC -->
+	<!-- on the JAVCC (.jj) grammar file                -->
+	<!-- ============================================== -->
+	<target name="prepare-jmsselector-src">
+		<property name="selectorgrammar.file" value="selector.jj"/>
+		<property name="filestodelete" value="SelectorParser*.java,SimpleCharStream.java,Token*.java,ParseException.java"/>
+		<echo message="Generating JMS selector parser classes"/>
+		<echo message="Grammar file        : ${selectorgrammar.dir}/${selectorgrammar.file}"/>
+		<echo message="Output Directory    : ${selectorgrammar.dir}"/>
+            <delete>
+                <fileset dir="${selectorgrammar.dir}" includes="${filestodelete}" />
+            </delete>
+	    <javacc
+			target="${selectorgrammar.dir}/${selectorgrammar.file}"
+			outputdirectory="${selectorgrammar.dir}"
+			javacchome="${javacchome}"
+			static="false"
+	    />
+	</target>
+
+  <!-- Build main,examples,test and place in jar files. -->
+  <target name="all" depends="clean,main,examples,test"/>
+
+  <!-- Build the test packages -->
+  <target name="test" depends="prepare">
+    <echo message="building test"/>
+    <mkdir dir="${build}/test"/>
+    <javac srcdir="${test}" 
+	   destdir="${build}/test"
+	   excludes="${testexcludes}"
+	   debug="on" 
+	   deprecation="${deprecation}">
+	   <classpath>
+	     <path refid="csselector-classpath"/>
+	     <pathelement location="${classes}"/>
+	   </classpath>
+    </javac>
+  </target>
+
+  <!-- Build the examples -->
+  <target name="examples" depends="prepare, main" >
+    <mkdir dir="${build}/examples"/>
+    <javac srcdir="${source}/examples" 
+	   destdir="${build}/examples" 
+	   debug="on" 
+	   deprecation="${deprecation}"
+	   excludes="${exampleexcludes}">  
+	   <classpath>
+	     <path refid="csselector-classpath"/>
+	     <pathelement path="${classes}"/>
+	   </classpath>
+    </javac>
+    <copy todir="${build}/examples">
+      <fileset dir="${source}/examples"/>
+    </copy>
+  </target>
+
+
+
+
+  <!-- Build the jar file -->
+  <target name="jar" depends="all">
+    <delete file="${dist}/${archive}.jar"/>
+    <jar jarfile="${dist}/${archive}.jar" 
+	 basedir="${classes}"
+	 includes="com/**"/>
+    <delete file="${dist}/${archive-test}.jar"/>
+    <jar jarfile="${dist}/${archive-test}.jar" 
+	 basedir="${build}/test"
+	 includes="com/**"/>
+  </target>
+
+  <target name="jar-latest" depends="all">
+    <delete file="${dist}/${archive-latest}.jar"/>
+    <jar jarfile="${dist}/${archive-latest}.jar" 
+	 basedir="${classes}"
+	 includes="com/**"/>
+    <delete file="${dist}/${archive-test-latest}.jar"/>
+    <jar jarfile="${dist}/${archive-test-latest}.jar" 
+	 basedir="${build}/test"
+	 includes="com/**"/>
+    
+  </target>
+
+  <target name="install-jar" depends="jar">
+    <copy file="${dist}/${archive}.jar" todir="${cs.lib.repo}"/>
+  </target> 
+
+  <target name="install-jar-latest" depends="jar-latest">
+    <copy file="${dist}/${archive-latest}.jar" todir="${cs.lib.repo}"/>
+  </target> 
+
+
+  
+  <!-- Build the full JavaDocs -->
+  <target name="javadoc" depends="prepare">
+    <mkdir dir="${build}/doc"/>
+    <mkdir dir="${build}/doc/javadoc"/>
+    <javadoc sourcepath="${main}" 
+	     destdir="${build}/doc/javadoc" 
+	     doctitle="${name} JavaDoc" 
+	     windowtitle="${name} JavaDoc" 
+	     bottom="${copyright}" 
+	     package="true" 
+	     author="true" 
+	     version="true" 
+	     noindex="true" 
+	     packagenames="${allpackagenames}"/>
+  </target>
+
+
+  <!-- Build the API JavaDocs -->
+  <target name="api" depends="prepare">
+    <mkdir dir="${build}/doc"/>
+    <mkdir dir="${build}/doc/api"/>
+    <javadoc sourcepath="${main}" 
+	     destdir="${build}/doc/api" 
+	     doctitle="${name} API" 
+	     windowtitle="${name} API" 
+	     bottom="${copyright}" 
+	     public="true" 
+	     author="true" 
+	     packagenames="${apipackagenames}"/>
+  </target>
+
+  <!-- Build the documentation -->
+  <target name="doc" depends="clean,prepare">
+    <mkdir dir="${build}/doc"/>
+    <copy todir="${build}/doc">
+      <fileset dir="${doc}"/>
+    </copy>
+  </target>
+
+  <!-- Build the docs, API and full JavaDocs, doc archives -->
+  <target name="docs" depends="doc,javadoc">
+    <zip zipfile="${dist}/${archive}-doc.zip" basedir="${build}" includes="doc/**"/>
+    <tar tarfile="${dist}/${archive}-doc.tar" basedir="${build}" includes="doc/**"/>
+    <gzip src="${dist}/${archive}-doc.tar" zipfile="${dist}/${archive}-doc.tgz"/>
+    <delete file="${dist}/${archive}-doc.tar"/>
+  </target>
+  
+  <target name="config">
+    <mkdir dir="${build}/config"/>
+    <copy todir="${build}/config">
+      <fileset dir="${config}"/>
+    </copy>
+  </target>
+
+
+  <!-- Build the source distribution -->
+  <target name="source" depends="prepare">
+    <delete file="${dist}/${archive}-scs.tgz"/>
+    <delete file="${dist}/${archive}-scs.zip"/>
+    <delete dir="${build}/${archive}"/>
+    <mkdir dir="${build}/${archive}"/>
+    <!-- copy source to the archive -->
+    <mkdir dir="${build}/${archive}/src"/>
+    <copy todir="${build}/${archive}/src">
+      <fileset dir="${source}" />
+    </copy>
+    <!-- copy libs to the archive -->
+    <mkdir dir="${build}/${archive}/lib"/>
+    <copy todir="${build}/${archive}/lib">
+      <fileset dir="${lib}" />
+    </copy>
+    <copy todir="${build}/${archive}">
+      <fileset dir="." includes="*.sh,*.bat"/>
+    </copy>
+
+    <tar includes="${archive}/**" 
+	 basedir="${build}" 
+	 tarfile="${dist}/${archive}-scs.tar"/>
+    <gzip src="${dist}/${archive}-scs.tar" 
+	  zipfile="${dist}/${archive}-scs.tgz"/>
+    <delete file="${dist}/${archive}-scs.tar"/>
+    <zip zipfile="${dist}/${archive}-scs.zip" 
+	 basedir="${build}" 
+	 includes="${archive}/**" />
+  </target>
+
+  <!-- Build a full release including JAR, zip/tarball, source and documentation -->
+  <target name="release" depends="clean,jar,source,docs,config,tarball"/>
+
+  
+  <!-- Build the tarball including JAR and all dependent packages -->
+  <target name="tarball" depends="prepare,jar">
+    <delete file="${dist}/${archive}.tgz"/>
+    <delete file="${dist}/${archive}.zip"/>
+    <deltree dir="${build}/${archive}"/>
+    <mkdir dir="${build}/${archive}"/>
+    <copy todir="${build}/${archive}">
+      <fileset dir="${dist}" includes="${archive}.jar"/>
+    </copy>
+    <copy todir="${build}/${archive}">
+      <fileset dir="${lib}"/>
+    </copy>
+    <!-- copy docs to the archive dir -->    
+    <copy todir="${build}/${archive}/doc">
+      <fileset dir="${build}/doc" />
+    </copy>
+    <!-- copy config to the archive dir -->    
+    <copy todir="${build}/${archive}/config">
+      <fileset dir="${build}/config" />
+    </copy>
+
+    <delete dir="${build}/${archive}/doc/javadoc"/>
+    <!--
+    <tar tarfile="${build}/${archive}/examples.tar" basedir="${source}" includes="examples/**" defaultexcludes="true"/>
+    <gzip src="${build}/${archive}/examples.tar" zipfile="${build}/${archive}/examples.tgz"/>
+    -->
+    <tar tarfile="${dist}/${archive}.tar" basedir="${build}" includes="${archive}/**" excludes="${archive}/*.tar,${archive}/*.zip"/>
+    <gzip src="${dist}/${archive}.tar" zipfile="${dist}/${archive}.tgz"/>
+    <delete file="${dist}/${archive}.tar"/>
+    <zip zipfile="${build}/${archive}/examples.zip" basedir="${source}" includes="examples/**" defaultexcludes="true"/>
+    <zip zipfile="${dist}/${archive}.zip" basedir="${build}" includes="${archive}/**" excludes="${archive}/*.tar,${archive}/*.tgz"/>
+  </target>     
+  
+</project>

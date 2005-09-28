@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright 2003, 2004, 2005. CodeStreet LLC.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+<project>
+  <pomVersion>3</pomVersion>
+  <name>JAMSEL</name>
+  <id>csselector</id>
+  <currentVersion>1.1</currentVersion>
+  <organization>
+    <name>CodeStreet</name>
+    <url>http://jamsel.sourceforge.net</url> 
+  </organization>
+  <inceptionYear>2002</inceptionYear>
+  <package>com.codestreet.selector</package>
+
+  <shortDescription>Selector Framework</shortDescription>
+  <description>
+  A selector framework to allow content-based message selection. An extremely (blazing) fast and efficient 
+  implemention of the JMS selector specification 1.1.
+  </description>
+
+  <url>http://jamsel.sourceforge.net</url>
+
+  <issueTrackingUrl>http://www.sourceforge.net/tracker//?group_id=68678</issueTrackingUrl> 
+  <siteAddress>jamsel.sourceforge.net</siteAddress> 
+  <siteDirectory>/home/groups/j/ja/jams/htdocs</siteDirectory> 
+  <distributionDirectory>/www/dontknowyet</distributionDirectory>
+
+  <repository>
+	<connection>scm:cvs:pserver:hjawaid@cvs.jamsel.sourceforge.net:/home/jamsel:jamsel</connection> 
+  	<url>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/jamsel</url> 
+  </repository>
+
+  <versions>
+    <version>
+      <id>latest</id>
+      <name>latest</name>
+      <tag>HEAD</tag>
+    </version>
+  </versions>
+  <branches />
+
+  <mailingLists>
+    <mailingList>
+      <name>Message Forge Developers</name>
+      <!--
+      <subscribe>jawaid.hakim@codestreet.com</subscribe>
+      <unsubscribe>jawaid.hakim@codestreet.com</unsubscribe>
+      <archive>http://nycsdevps</archive>
+      -->
+    </mailingList>
+  </mailingLists>
+
+  <developers>
+    <developer>
+      <name>Jawaid Hakim</name>
+      <id>jawaid.hakim</id>
+      <email>jawaid.hakim@codestreet.com</email>
+      <organization>CodeStreet</organization>
+    </developer>
+  </developers>
+
+  <contributors>
+    <contributor>
+      <name>Jawaid Hakim</name>
+      <id>jawaid.hakim</id>
+      <email>jawaid.hakim@codestreet.com</email>
+      <organization>CodeStreet</organization>
+    </contributor>
+  </contributors>
+
+  <dependencies>
+
+    <dependency>
+      <id>jms</id>
+      <version>1.1</version>
+      <url>http://java.sun.com/products/jms/</url> 
+    </dependency>
+
+    <dependency>
+      <id>tibrvj</id>
+      <version>6.9.8</version>
+      <url>http://www.tibco.com</url> 
+    </dependency>
+
+  </dependencies>
+
+  <links>
+      <item name="MessageForge" href="http://www.sf.net/projects/messageforge"/>
+      <item name="JAAD"      	href="http://www.sf.net/projects/jaad"/>
+      <item name="RvTest"      	href="http://www.sf.net/projects/rvtest"/>
+      <item name="CodeStreet"   href="http://www.codestreet.com"/>
+  </links>
+
+  <build>
+    <name>JAMSEL</name>
+    <sourceDirectory>src/java</sourceDirectory>
+    <nagEmailAddress /> 
+    <integrationUnitTestSourceDirectory /> 
+    <aspectSourceDirectory /> 
+    <unitTestSourceDirectory />
+    <unitTestPatterns />
+    <integrationUnitTestPatterns />
+    <jarResources />
+    <unitTest>
+	<includes>
+  	</includes>
+    </unitTest>
+    <testResources>
+    	<testResource>
+  	</testResource>
+    </testResources>
+    <resources>
+      <resource>
+      </resource>
+    </resources>
+    <jars>
+    </jars>
+  </build>
+</project>

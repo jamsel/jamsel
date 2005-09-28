@@ -1,0 +1,28 @@
+<project xmlns:j="jelly:core" xmlns:deploy="deploy">
+
+ 	<postGoal name="java:compile">
+	    <echo message="*** copying dependent JARs ***"/> 
+            <deploy:copy-deps todir="${maven.build.dest}" excludes="itc-1.3.8fixed,tibrvj.6.9.8"/>
+  	</postGoal>
+
+	<postGoal name="site:generate"> 
+		<echo message="*** copying Microsoft based documentation ***"/> 
+		<mkdir dir="target/docs/msoft"/> 
+		<copy todir="target/docs/msoft"> 
+			<fileset dir="doc/overview"/> 
+		</copy> 
+	</postGoal> 
+
+
+	<goal name="codestreet-deploy">
+	  <echo message="Using file system to copy to remote repository..."/>
+	  <copy todir="${codestreet.maven.repo.remote.drive}\csselector\jars\">
+	    <fileset dir="./target">
+	      <include name="csselector-1.1.jar"/>
+	    </fileset>
+	  </copy>
+        </goal>
+
+
+</project>
+ 
