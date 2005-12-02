@@ -56,11 +56,12 @@ namespace CodeStreet.Selector
 				dat.Add("Coupon", (decimal)6.5);
 				dat.Add("CUSIP", "123456789");
 
-				string selStr = "CUSIP LIKE '1234%' AND Coupon > 6.5 AND Quantity > 100 AND (Volume < 10 OR Price > 1000)";
+				string selStr = "Coupon > -1.0";
+				//string selStr = "CUSIP LIKE '1234%' AND Coupon > 6.5 AND Coupon > -1.0 AND Quantity > 100 AND (Volume < 10 OR Price > 1000)";
 				ISelector sel = Selector.getInstance(selStr);
 				
 				DateTime start = System.DateTime.Now;
-				int maxIter = 2000000;
+				int maxIter = 10;
 				for (int i = 0; i < maxIter; ++i)
 				{
 					Result res = sel.eval(dat);
@@ -86,7 +87,7 @@ namespace CodeStreet.Selector
 			{
 				System.Console.WriteLine(ex.StackTrace);
 			}
-		}
+			}
 
 		private static void DoTest2()
 		{

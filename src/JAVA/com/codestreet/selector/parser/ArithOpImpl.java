@@ -63,7 +63,7 @@ abstract class ArithOpImpl
 				return Result.RESULT_UNKNOWN;
 			Number rhsVal = (Number) oRhs;
 
-			return new Double(lhsVal.doubleValue() + rhsVal.doubleValue());
+			return new NumericValue(new Double(lhsVal.doubleValue() + rhsVal.doubleValue()));
 		}
 
 		public Object eval(final IValueProvider provider, final Object corr,
@@ -79,7 +79,7 @@ abstract class ArithOpImpl
 				return Result.RESULT_UNKNOWN;
 			NumericValue rhsVal = (NumericValue) oRhs;
 
-			return new Double(lhsVal.doubleValue() + rhsVal.doubleValue());
+			return new NumericValue(new Double(lhsVal.doubleValue() + rhsVal.doubleValue()));
 		}
 	};
 
@@ -101,7 +101,7 @@ abstract class ArithOpImpl
 				return Result.RESULT_UNKNOWN;
 			NumericValue rhsVal = (NumericValue) oRhs;
 
-			return new Double(lhsVal.doubleValue() - rhsVal.doubleValue());
+			return new NumericValue(new Double(lhsVal.doubleValue() - rhsVal.doubleValue()));
 		}
 
 		public Object eval(final IValueProvider provider, final Object corr,
@@ -117,7 +117,7 @@ abstract class ArithOpImpl
 				return Result.RESULT_UNKNOWN;
 			NumericValue rhsVal = (NumericValue) oRhs;
 
-			return new Double(lhsVal.doubleValue() - rhsVal.doubleValue());
+			return new NumericValue(new Double(lhsVal.doubleValue() - rhsVal.doubleValue()));
 		}
 	};
 
@@ -139,7 +139,7 @@ abstract class ArithOpImpl
 				return Result.RESULT_UNKNOWN;
 			NumericValue rhsVal = (NumericValue) oRhs;
 
-			return new Double(lhsVal.doubleValue() * rhsVal.doubleValue());
+			return new NumericValue(new Double(lhsVal.doubleValue() * rhsVal.doubleValue()));
 		}
 
 		public Object eval(final IValueProvider provider, final Object corr,
@@ -155,7 +155,7 @@ abstract class ArithOpImpl
 				return Result.RESULT_UNKNOWN;
 			NumericValue rhsVal = (NumericValue) oRhs;
 
-			return new Double(lhsVal.doubleValue() * rhsVal.doubleValue());
+			return new NumericValue(new Double(lhsVal.doubleValue() * rhsVal.doubleValue()));
 		}
 	};
 
@@ -177,7 +177,7 @@ abstract class ArithOpImpl
 				return Result.RESULT_UNKNOWN;
 			NumericValue rhsVal = (NumericValue) oRhs;
 
-			return new Double(lhsVal.doubleValue() / rhsVal.doubleValue());
+			return new NumericValue(new Double(lhsVal.doubleValue() / rhsVal.doubleValue()));
 		}
 
 		public Object eval(final IValueProvider provider, final Object corr,
@@ -193,7 +193,7 @@ abstract class ArithOpImpl
 				return Result.RESULT_UNKNOWN;
 			NumericValue rhsVal = (NumericValue) oRhs;
 
-			return new Double(lhsVal.doubleValue() / rhsVal.doubleValue());
+			return new NumericValue(new Double(lhsVal.doubleValue() / rhsVal.doubleValue()));
 		}
 	};
 
@@ -210,7 +210,7 @@ abstract class ArithOpImpl
 				return Result.RESULT_UNKNOWN;
 			NumericValue rhsVal = (NumericValue) oRhs;
 
-			return new Double(-rhsVal.doubleValue());
+			return new NumericValue(new Double(-rhsVal.doubleValue()));
 		}
 
 		public Object eval(final IValueProvider provider, final Object corr,
@@ -221,7 +221,7 @@ abstract class ArithOpImpl
 				return Result.RESULT_UNKNOWN;
 			NumericValue rhsVal = (NumericValue) oRhs;
 
-			return new Double(-rhsVal.doubleValue());
+			return new NumericValue(new Double(-rhsVal.doubleValue()));
 		}
 	};
 

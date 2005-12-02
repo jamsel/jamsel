@@ -169,16 +169,18 @@ TOKEN :
 
 TOKEN :
 {
-  < TK_LONG: ( ["0" - "9"] )+ >
-  | 
+  < TK_LONG: ( ("-")? ["0" - "9"] )+ >
+  |
   < TK_DOUBLE: <TK_FLOAT>
 	    | 
-            <TK_FLOAT> ( ["e","E"] ([ "-","+"])? <TK_LONG> )?
+            <TK_FLOAT> ( ["e","E"] ([ "-","+"])? <TK_EXPONENT> )?
     >
+  |
+  < #TK_EXPONENT: ( ["0" - "9"] )+ >
   | < #TK_FLOAT: 
-            <TK_LONG> ( "." (<TK_LONG>)? )
+            <TK_LONG> ( "." (<TK_EXPONENT>)? )
 	    | 
-            "." <TK_LONG>
+            "." <TK_EXPONENT>
     >
   | < TK_STRING:
       "'"

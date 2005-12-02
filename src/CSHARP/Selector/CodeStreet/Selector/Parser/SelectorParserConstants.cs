@@ -32,13 +32,14 @@ namespace CodeStreet.Selector.Parser
 		public readonly static int TK_COMMA = 29;
 		public readonly static int TK_LONG = 30;
 		public readonly static int TK_DOUBLE = 31;
-		public readonly static int TK_FLOAT = 32;
-		public readonly static int TK_STRING = 33;
-		public readonly static int TK_IDENTIFIER = 34;
-		public readonly static int TK_LETTER = 35;
-		public readonly static int TK_DIGIT = 36;
+		public readonly static int TK_EXPONENT = 32;
+		public readonly static int TK_FLOAT = 33;
+		public readonly static int TK_STRING = 34;
+		public readonly static int TK_IDENTIFIER = 35;
+		public readonly static int TK_LETTER = 36;
+		public readonly static int TK_DIGIT = 37;
 		public readonly static int DEFAULT = 0;
-		public readonly static System.String[] tokenImage = new System.String[]{"<EOF>", "\" \"", "\"\\t\"", "\"\\n\"", "\"\\r\"", "\"TRUE\"", "\"FALSE\"", "\"NULL\"", "\"OR\"", "\"AND\"", "\"NOT\"", "\"BETWEEN\"", "\"LIKE\"", "\"IN\"", "\"IS\"", "\"ESCAPE\"", "\"-\"", "\"+\"", "\"*\"", "\"/\"", "\"=\"", "\"<>\"", "\">\"", "\">=\"", "\"<\"", "\"<=\"", "\"(\"", "\")\"", "\";\"", "\",\"", "<TK_LONG>", "<TK_DOUBLE>", "<TK_FLOAT>", "<TK_STRING>", "<TK_IDENTIFIER>", "<TK_LETTER>", "<TK_DIGIT>"};
+		public readonly static System.String[] tokenImage = new System.String[]{"<EOF>", "\" \"", "\"\\t\"", "\"\\n\"", "\"\\r\"", "\"TRUE\"", "\"FALSE\"", "\"NULL\"", "\"OR\"", "\"AND\"", "\"NOT\"", "\"BETWEEN\"", "\"LIKE\"", "\"IN\"", "\"IS\"", "\"ESCAPE\"", "\"-\"", "\"+\"", "\"*\"", "\"/\"", "\"=\"", "\"<>\"", "\">\"", "\">=\"", "\"<\"", "\"<=\"", "\"(\"", "\")\"", "\";\"", "\",\"", "<TK_LONG>", "<TK_DOUBLE>", "<TK_EXPONENT>", "<TK_FLOAT>", "<TK_STRING>", "<TK_IDENTIFIER>", "<TK_LETTER>", "<TK_DIGIT>"};
 	}
 	public interface SelectorParserConstants
 	{

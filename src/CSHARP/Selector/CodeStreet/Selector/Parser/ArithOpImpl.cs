@@ -44,7 +44,7 @@ namespace CodeStreet.Selector.Parser
 				NumericValue rhsVal = (NumericValue) oRhs;
 				
 				//UPGRADE_ISSUE: Method 'java.lang.Number.doubleValue' was not converted. 'ms-help://MS.VSCC.2003/commoner/redir/redirect.htm?keyword="jlca1000_javalangNumber"'
-				return lhsVal.doubleValue() + rhsVal.doubleValue();
+				return new NumericValue(lhsVal.doubleValue() + rhsVal.doubleValue());
 			}
 			
 			public override System.Object eval(IValueProvider provider, System.Object corr, IExpression lhs, IExpression rhs)
@@ -59,7 +59,7 @@ namespace CodeStreet.Selector.Parser
 					return Result.RESULT_UNKNOWN;
 				NumericValue rhsVal = (NumericValue) oRhs;
 				
-				return lhsVal.doubleValue() + rhsVal.doubleValue();
+				return new NumericValue(lhsVal.doubleValue() + rhsVal.doubleValue());
 			}
 		}
 		internal class AnonymousClassArithOpImpl1:ArithOpImpl
@@ -80,7 +80,7 @@ namespace CodeStreet.Selector.Parser
 					return Result.RESULT_UNKNOWN;
 				NumericValue rhsVal = (NumericValue) oRhs;
 				
-				return lhsVal.doubleValue() - rhsVal.doubleValue();
+				return new NumericValue(lhsVal.doubleValue() - rhsVal.doubleValue());
 			}
 			
 			public override System.Object eval(IValueProvider provider, System.Object corr, IExpression lhs, IExpression rhs)
@@ -95,7 +95,7 @@ namespace CodeStreet.Selector.Parser
 					return Result.RESULT_UNKNOWN;
 				NumericValue rhsVal = (NumericValue) oRhs;
 				
-				return lhsVal.doubleValue() - rhsVal.doubleValue();
+				return new NumericValue(lhsVal.doubleValue() - rhsVal.doubleValue());
 			}
 		}
 		internal class AnonymousClassArithOpImpl2:ArithOpImpl
@@ -116,7 +116,7 @@ namespace CodeStreet.Selector.Parser
 					return Result.RESULT_UNKNOWN;
 				NumericValue rhsVal = (NumericValue) oRhs;
 				
-				return lhsVal.doubleValue() * rhsVal.doubleValue();
+				return new NumericValue(lhsVal.doubleValue() * rhsVal.doubleValue());
 			}
 			
 			public override System.Object eval(IValueProvider provider, System.Object corr, IExpression lhs, IExpression rhs)
@@ -131,7 +131,7 @@ namespace CodeStreet.Selector.Parser
 					return Result.RESULT_UNKNOWN;
 				NumericValue rhsVal = (NumericValue) oRhs;
 				
-				return lhsVal.doubleValue() * rhsVal.doubleValue();
+				return new NumericValue(lhsVal.doubleValue() * rhsVal.doubleValue());
 			}
 		}
 		internal class AnonymousClassArithOpImpl3:ArithOpImpl
@@ -152,7 +152,7 @@ namespace CodeStreet.Selector.Parser
 					return Result.RESULT_UNKNOWN;
 				NumericValue rhsVal = (NumericValue) oRhs;
 				
-				return lhsVal.doubleValue() / rhsVal.doubleValue();
+				return new NumericValue(lhsVal.doubleValue() / rhsVal.doubleValue());
 			}
 			
 			public override System.Object eval(IValueProvider provider, System.Object corr, IExpression lhs, IExpression rhs)
@@ -167,7 +167,7 @@ namespace CodeStreet.Selector.Parser
 					return Result.RESULT_UNKNOWN;
 				NumericValue rhsVal = (NumericValue) oRhs;
 				
-				return lhsVal.doubleValue() / rhsVal.doubleValue();
+				return new NumericValue(lhsVal.doubleValue() / rhsVal.doubleValue());
 			}
 		}
 		internal class AnonymousClassArithOpImpl4:ArithOpImpl
@@ -183,7 +183,7 @@ namespace CodeStreet.Selector.Parser
 					return Result.RESULT_UNKNOWN;
 				NumericValue rhsVal = (NumericValue) oRhs;
 				
-				return - rhsVal.doubleValue();
+				return new NumericValue(- rhsVal.doubleValue());
 			}
 			
 			public override System.Object eval(IValueProvider provider, System.Object corr, IExpression lhs, IExpression rhs)
@@ -193,7 +193,7 @@ namespace CodeStreet.Selector.Parser
 					return Result.RESULT_UNKNOWN;
 				NumericValue rhsVal = (NumericValue) oRhs;
 				
-				return - rhsVal.doubleValue();
+				return new NumericValue(- rhsVal.doubleValue());
 			}
 		}
 		/// <summary> Ctor.</summary>
