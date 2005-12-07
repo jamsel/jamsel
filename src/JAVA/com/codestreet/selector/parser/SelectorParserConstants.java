@@ -31,11 +31,12 @@ public interface SelectorParserConstants {
   int TK_COMMA = 29;
   int TK_LONG = 30;
   int TK_DOUBLE = 31;
-  int TK_FLOAT = 32;
-  int TK_STRING = 33;
-  int TK_IDENTIFIER = 34;
-  int TK_LETTER = 35;
-  int TK_DIGIT = 36;
+  int TK_EXPONENT = 32;
+  int TK_FLOAT = 33;
+  int TK_STRING = 34;
+  int TK_IDENTIFIER = 35;
+  int TK_LETTER = 36;
+  int TK_DIGIT = 37;
 
   int DEFAULT = 0;
 
@@ -72,6 +73,7 @@ public interface SelectorParserConstants {
     "\",\"",
     "<TK_LONG>",
     "<TK_DOUBLE>",
+    "<TK_EXPONENT>",
     "<TK_FLOAT>",
     "<TK_STRING>",
     "<TK_IDENTIFIER>",

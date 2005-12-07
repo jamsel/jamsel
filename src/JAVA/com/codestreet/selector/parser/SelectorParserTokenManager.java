@@ -716,7 +716,6 @@ public static final String[] jjstrLiteralImages = {
 null, null, null, "\55", "\53", "\52", "\57", "\75", "\74\76", "\76", "\76\75", 
 "\74", "\74\75", "\50", "\51", "\73", "\54", null, null, null, null, null, null, null, 
 null, };
-
 public static final String[] lexStateNames = {
    "DEFAULT", 
 };

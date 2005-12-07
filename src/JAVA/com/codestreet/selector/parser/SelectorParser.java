@@ -17,7 +17,7 @@ public class SelectorParser implements SelectorParserConstants {
     * @return Returns the parse state. The parse state consists of the root
     * of the parse tree and the identifiers encountered during the parse.
     */
-   public static SelectorParseState doParse(String selector, boolean trace) throws InvalidSelectorException
+   public static SelectorParseState doParse(final String selector, final boolean trace) throws InvalidSelectorException
    {
       try
       {
@@ -39,12 +39,12 @@ public class SelectorParser implements SelectorParserConstants {
       this(new StringReader(""));
    }
 
-   private SelectorParseState parse(String selector) throws ParseException
+   private SelectorParseState parse(final String selector) throws ParseException
    {
       return parse(selector, false);
    }
 
-   private SelectorParseState parse(String selector, boolean trace) throws ParseException
+   private SelectorParseState parse(final String selector, final boolean trace) throws ParseException
    {
       StringReader sr = new StringReader(selector);
       ReInit(sr);
@@ -61,14 +61,14 @@ public class SelectorParser implements SelectorParserConstants {
       return new SelectorParseState(this.expression(), identifierMap);
    }
 
-   private String stripQuotes(String image)
+   private String stripQuotes(final String image)
    {
       return image.substring(1, image.length() - 1);
    }
 
    public static class SelectorParseState
    {
-       public SelectorParseState(IExpression root, Map identifiers)
+       public SelectorParseState(final IExpression root, final Map identifiers)
        {
            root_ = root;
            identifiers_ = identifiers;
@@ -761,77 +761,6 @@ public class SelectorParser implements SelectorParserConstants {
     return retval;
   }
 
-  final private boolean jj_3R_12() {
-    if (jj_3R_16()) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3_23()) { jj_scanpos = xsp; break; }
-      if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    }
-    return false;
-  }
-
-  final private boolean jj_3_37() {
-    if (jj_scan_token(TK_FALSE)) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    return false;
-  }
-
-  final private boolean jj_3_10() {
-    if (jj_scan_token(TK_LE)) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    if (jj_3R_11()) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    return false;
-  }
-
-  final private boolean jj_3_9() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3_10()) {
-    jj_scanpos = xsp;
-    if (jj_3_11()) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    } else if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    return false;
-  }
-
-  final private boolean jj_3_36() {
-    if (jj_scan_token(TK_TRUE)) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    return false;
-  }
-
-  final private boolean jj_3R_10() {
-    if (jj_3R_11()) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3_9()) { jj_scanpos = xsp; break; }
-      if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    }
-    return false;
-  }
-
-  final private boolean jj_3_22() {
-    if (jj_scan_token(TK_NOT)) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    if (jj_scan_token(TK_IN)) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    if (jj_scan_token(TK_LPAREN)) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    return false;
-  }
-
-  final private boolean jj_3_35() {
-    if (jj_scan_token(TK_LONG)) return true;
-    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
-    return false;
-  }
-
   final private boolean jj_3_21() {
     if (jj_scan_token(TK_IN)) return true;
     if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
@@ -1296,6 +1225,77 @@ public class SelectorParser implements SelectorParserConstants {
     return false;
   }
 
+  final private boolean jj_3R_12() {
+    if (jj_3R_16()) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3_23()) { jj_scanpos = xsp; break; }
+      if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    }
+    return false;
+  }
+
+  final private boolean jj_3_37() {
+    if (jj_scan_token(TK_FALSE)) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    return false;
+  }
+
+  final private boolean jj_3_10() {
+    if (jj_scan_token(TK_LE)) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    if (jj_3R_11()) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    return false;
+  }
+
+  final private boolean jj_3_9() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_10()) {
+    jj_scanpos = xsp;
+    if (jj_3_11()) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    } else if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    return false;
+  }
+
+  final private boolean jj_3_36() {
+    if (jj_scan_token(TK_TRUE)) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    return false;
+  }
+
+  final private boolean jj_3R_10() {
+    if (jj_3R_11()) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3_9()) { jj_scanpos = xsp; break; }
+      if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    }
+    return false;
+  }
+
+  final private boolean jj_3_22() {
+    if (jj_scan_token(TK_NOT)) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    if (jj_scan_token(TK_IN)) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    if (jj_scan_token(TK_LPAREN)) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    return false;
+  }
+
+  final private boolean jj_3_35() {
+    if (jj_scan_token(TK_LONG)) return true;
+    if (jj_la == 0 && jj_scanpos == jj_lastpos) return false;
+    return false;
+  }
+
   public SelectorParserTokenManager token_source;
   SimpleCharStream jj_input_stream;
   public Token token, jj_nt;
@@ -1473,8 +1473,8 @@ public class SelectorParser implements SelectorParserConstants {
 
   final public ParseException generateParseException() {
     jj_expentries.removeAllElements();
-    boolean[] la1tokens = new boolean[37];
-    for (int i = 0; i < 37; i++) {
+    boolean[] la1tokens = new boolean[38];
+    for (int i = 0; i < 38; i++) {
       la1tokens[i] = false;
     }
     if (jj_kind >= 0) {
@@ -1493,7 +1493,7 @@ public class SelectorParser implements SelectorParserConstants {
         }
       }
     }
-    for (int i = 0; i < 37; i++) {
+    for (int i = 0; i < 38; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

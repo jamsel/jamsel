@@ -105,7 +105,7 @@ public class Main
 				map.put("Quantity", new NumericValue(new Integer(101)));
 				map.put("Volume", new NumericValue(new Double(25.5)));
 
-				String selector = "Quantity > -100 AND Volume <= 50.5";
+				String selector = "Quantity > 100 AND Volume <= 50.5";
 				//String selector = "SecurityID = 'TIBX' AND Quantity > 100 AND Volume <= 50.5";
 				Selector csselector = Selector.getInstance(selector);
 
