@@ -205,7 +205,7 @@
 		<echo message="Generating JMS selector parser classes"/>
 		<echo message="Grammar file        : ${selectorgrammar.dir}/${selectorgrammar.file}"/>
 		<echo message="Output Directory    : ${selectorgrammar.dir}"/>
-            <delete>
+            <!--<delete>
                 <fileset dir="${selectorgrammar.dir}" includes="${filestodelete}" />
             </delete>
 	    <javacc
@@ -213,7 +213,7 @@
 			outputdirectory="${selectorgrammar.dir}"
 			javacchome="${javacchome}"
 			static="false"
-	    />
+	    />-->
 	</target>
 
   <!-- Build main,examples,test and place in jar files. -->
