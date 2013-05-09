@@ -15,11 +15,11 @@
 package com.codestreet.selector;
 
 import com.codestreet.selector.parser.Result;
-import com.codestreet.selector.rv.ValueProvider;
+//import com.codestreet.selector.rv.ValueProvider;
 import com.codestreet.selector.parser.NumericValue;
 
 // import com.codestreet.selector.jms.ValueProvider;
-import com.tibco.tibrv.*;
+//import com.tibco.tibrv.*;
 import java.math.BigDecimal;
 import java.util.Hashtable;
 
