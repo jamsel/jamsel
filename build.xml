@@ -172,6 +172,8 @@
   <!-- Build all the sources with debug and deprecation -->
   <target name="main" depends="prepare">
     <javac srcdir="${main}" 
+           source="1.4"
+           target="1.4"
 	   destdir="${classes}" 
 	   excludes="${excludes}"
 	   classpathref="csselector-classpath" 
@@ -182,6 +184,8 @@
   <!-- Same as main, but optimization, no debug and no deprecation -->
   <target name="main-opt" depends="prepare">
     <javac srcdir="${source}" 
+           source="1.4"
+           target="1.4"
 	   destdir="${classes}" 
 	   excludes="${excludes}" 
 	   classpathref="csselector-classpath" 
@@ -220,6 +224,8 @@
     <echo message="building test"/>
     <mkdir dir="${build}/test"/>
     <javac srcdir="${test}" 
+           source="1.4"
+           target="1.4"
 	   destdir="${build}/test"
 	   excludes="${testexcludes}"
 	   debug="on" 
@@ -235,6 +241,8 @@
   <target name="examples" depends="prepare, main" >
     <mkdir dir="${build}/examples"/>
     <javac srcdir="${source}/examples" 
+           source="1.4"
+           target="1.4"
 	   destdir="${build}/examples" 
 	   debug="on" 
 	   deprecation="${deprecation}"
